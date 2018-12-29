@@ -37,6 +37,8 @@ from bpy.types import Panel, Operator, Menu, Macro, WindowManager
 from bpy.utils import previews
 from bpy.props import EnumProperty, StringProperty, BoolVectorProperty
 
+from . import plugin
+
 bl_info = {
     "name": "YAAM",
     "version": (0, 1),
@@ -1516,6 +1518,9 @@ def setup_preview_collections(mgr):
 def register():
     for cls in classes:
         bpy.utils.register_class(cls)
+
+    # TODO: Use this to handle all plugin needs.
+    plugin_manager = plugin.PluginManager.register()
 
     bpy.types.Scene.assets_dir = StringProperty(
         name="Asset Folder",
